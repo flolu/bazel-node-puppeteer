@@ -1,3 +1,4 @@
+import {createServer} from 'http'
 import puppeteer from 'puppeteer'
 
 async function main() {
@@ -29,8 +30,9 @@ async function main() {
   console.log(buffer);
 
   await browser.close();
-
-  process.exit(0);
 }
 
 main();
+
+const server = createServer((req, res) => res.end());
+server.listen(8081);
