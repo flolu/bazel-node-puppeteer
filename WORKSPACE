@@ -53,3 +53,10 @@ container_pull(
     registry = "docker.io",
     repository = "drakery/node-puppeteer:latest",
 )
+
+container_pull(
+    name = "ubuntu",
+    digest = "sha256:8f083e3e070591f3f70ec51abd83d0e6e8b5c92fe4bc79775f50d0a22b8b7021",
+    registry = "docker.io",
+    repository = "ubuntu:20.04",
+)

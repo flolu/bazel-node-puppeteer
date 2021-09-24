@@ -34,7 +34,13 @@ nodejs_image(
 )
 
 nodejs_image(
-    name = "base_image",
-    base = "@nodejs_puppeteer//image",
+    name = "nodejs_puppeteer",
+    base = "@ubuntu//image",
+    binary = "server",
+)
+
+nodejs_image(
+    name = "ubuntu_base",
+    base = "@ubuntu//image",
     binary = "server",
 )
