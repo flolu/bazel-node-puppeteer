@@ -13,7 +13,7 @@ async function main() {
     ],
     headless: true,
     dumpio: true,
-    executablePath: "google-chrome-stable",
+    // executablePath: "google-chrome-stable",
   });
 
   const page = await browser.newPage();

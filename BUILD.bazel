@@ -1,8 +1,6 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_config", "ts_project")
 load("@io_bazel_rules_docker//nodejs:image.bzl", "nodejs_image")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
-load("@io_bazel_rules_docker//container:image.bzl", "container_image")
-load("@k8s_deploy//:defaults.bzl", "k8s_deploy")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -31,19 +29,12 @@ nodejs_binary(
 )
 
 nodejs_image(
-    name = "base_image",
-    base = "@nodejs_puppeteer//image",
+    name = "image",
     binary = "server",
 )
 
-container_image(
-    name = "image",
-    base = "base_image",
-    stamp = True,
-)
-
-k8s_deploy(
-    name = "kubernetes",
-    images = {"bazel-node-puppeteer:latest": "image"},
-    template = "deployment.yaml",
+nodejs_image(
+    name = "base_image",
+    base = "@nodejs_puppeteer//image",
+    binary = "server",
 )

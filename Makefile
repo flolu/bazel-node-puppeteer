@@ -6,6 +6,3 @@ push-image:
 
 run:
 	yarn bazelisk run //:server
-
-deploy:
-	yarn bazelisk run //:kubernetes.apply
