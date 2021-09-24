@@ -1,5 +1,5 @@
 workspace(
-    name = "drakery",
+    name = "node_puppeteer",
     managed_directories = {"@npm": ["node_modules"]},
 )
 
