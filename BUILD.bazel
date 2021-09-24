@@ -32,6 +32,7 @@ nodejs_binary(
 
 nodejs_image(
     name = "base_image",
+    base = "@nodejs_puppeteer//image",
     binary = "server",
 )
 

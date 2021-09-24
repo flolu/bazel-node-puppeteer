@@ -67,3 +67,12 @@ k8s_defaults(
     image_chroot = "eu.gcr.io/project",
     kind = "deployment",
 )
+
+load("@io_bazel_rules_docker//container:container.bzl", "container_pull")
+
+container_pull(
+    name = "nodejs_puppeteer",
+    digest = "sha256:22ec485fa257ec892efc2a8b69ef9a3a2a81a0f6622969ffe2d416d2a076214b",
+    registry = "docker.io",
+    repository = "drakery/node-puppeteer:latest",
+)

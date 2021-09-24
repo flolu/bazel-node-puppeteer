@@ -1,5 +1,5 @@
-import {createServer} from 'http'
-import puppeteer from 'puppeteer'
+import { createServer } from "http";
+import puppeteer from "puppeteer";
 
 async function main() {
   const url = "https://www.w3schools.com/html/html5_canvas.asp";
@@ -13,6 +13,7 @@ async function main() {
     ],
     headless: true,
     dumpio: true,
+    executablePath: "google-chrome-stable",
   });
 
   const page = await browser.newPage();

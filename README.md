@@ -17,11 +17,22 @@
 
 ## Deploy to K8s, throws error
 
+```
+(node:44) UnhandledPromiseRejectionWarning: Error: Failed to launch the browser process!
+/app/server.runfiles/drakery/node_modules/puppeteer/.local-chromium/linux-901912/chrome-linux/chrome: error while loading shared libraries: libgobject-2.0.so.0: cannot open shared object file: No such file or directory
+
+TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
+```
+
+## K8s with custom base image, throws error
+
 - `yarn bazelisk run //:kubernetes.apply`
-
   ```
-  (node:44) UnhandledPromiseRejectionWarning: Error: Failed to launch the browser process!
-  /app/server.runfiles/drakery/node_modules/puppeteer/.local-chromium/linux-901912/chrome-linux/chrome: error while loading shared libraries: libgobject-2.0.so.0: cannot open shared object file: No such file or directory
-
-  TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
+  [link_node_modules.js] An error has been reported: [Error: EACCES: permission denied, symlink '/app/server.runfiles/npm/node_modules' -> 'node_modules'] {
+    errno: -13,
+    code: 'EACCES',
+    syscall: 'symlink',
+    path: '/app/server.runfiles/npm/node_modules',
+    dest: 'node_modules'
+  } Error: EACCES: permission denied, symlink '/app/server.runfiles/npm/node_modules' -> 'node_modules'
   ```
