@@ -48,8 +48,16 @@ nodejs_image_repos()
 load("@io_bazel_rules_docker//container:container.bzl", "container_pull")
 
 container_pull(
-    name = "ubuntu",
-    digest = "sha256:a1ceb3aac586b6377821ffe6aede35c3646649ee5ac38c3566799cd04745257f",
+    name = "custom_ubuntu",
+    digest = "sha256:7ce45a95fba69724183864d22957bbee533d36f394df6a66ca27339b8811d648",
     registry = "docker.io",
     repository = "drakery/node-puppeteer",
+)
+
+container_pull(
+    name = "ubuntu",
+    digest = "sha256:3555f4996aea6be945ae1532fa377c88f4b3b9e6d93531f47af5d78a7d5e3761",
+    registry = "index.docker.io",
+    repository = "library/ubuntu",
+    tag = "20.10",
 )

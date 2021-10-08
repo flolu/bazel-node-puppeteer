@@ -1,6 +1,9 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_config", "ts_project")
 load("@io_bazel_rules_docker//nodejs:image.bzl", "nodejs_image")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("@io_bazel_rules_docker//container:image.bzl", "container_image")
+load("@io_bazel_rules_docker//docker/package_managers:download_pkgs.bzl", "download_pkgs")
+load("@io_bazel_rules_docker//docker/package_managers:install_pkgs.bzl", "install_pkgs")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -35,6 +38,39 @@ nodejs_image(
 
 nodejs_image(
     name = "custom_ubuntu",
-    base = "@ubuntu//image",
+    base = "@custom_ubuntu//image",
+    binary = "server",
+)
+
+download_pkgs(
+    name = "download_puppeteer_base",
+    image_tar = "@ubuntu//image",
+    packages = [
+        "chromium-browser",
+        "libx11-dev",
+        "libxext-dev",
+        "nodejs",
+        "snapd",
+        "xorg",
+        "xserver-xorg",
+        "xvfb",
+    ],
+)
+
+install_pkgs(
+    name = "install_puppeteer_base",
+    image_tar = "@ubuntu//image",
+    installables_tar = "download_puppeteer_base.tar",
+    output_image_name = "puppeteer_base",
+)
+
+container_image(
+    name = "puppeteer_base",
+    base = "install_puppeteer_base",
+)
+
+nodejs_image(
+    name = "bazel_ubuntu",
+    base = "puppeteer_base",
     binary = "server",
 )
